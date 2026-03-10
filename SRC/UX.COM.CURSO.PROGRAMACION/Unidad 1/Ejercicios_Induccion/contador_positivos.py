@@ -1,4 +1,7 @@
 #Desarrollo de aloritmo Contador de Algoritmos
+"""
+Contador Positivos
+"""
 def contador_positivos():
     contador = 0
     while True:
