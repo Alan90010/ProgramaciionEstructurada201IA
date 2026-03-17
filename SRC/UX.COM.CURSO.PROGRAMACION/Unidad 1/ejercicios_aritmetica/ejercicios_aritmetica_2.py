@@ -7,10 +7,10 @@ def mostrar_funciones_math():
     numero = 20
 
     sen_x = math.sin(numero)
-    conse_x = math.cos(numero)
+    cos_x = math.cos(numero)
 
     print(" El seno de", numero, "es", sen_x)
-    print(" El seno de", numero, "es", conse_x)
+    print(" El seno de", numero, "es", cos_x)
 
     resultado = sen_x ** 2 + conse_x ** 2
 
