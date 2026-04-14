@@ -51,19 +51,35 @@ def generar_reporte(total_datos, validos, estadisticas):
     """
     FUNCIÓN 4: Imprime un resumen formateado de los resultados.
     """
- # IMPLEMENTAR AQUÍ
-    pass
+    # IMPLEMENTAR AQUÍ:
+    v_max, v_min, v_prom = estadisticas
+    descartados = total_datos - validos
+
+    print("*" * 30)
+    print("REPORTE DE ANILISIS PREDECTIVO")
+    print("*" * 30)
+    print(f"Total de lecturas prcesadas: {total_datos}")
+    print(f"Lecturas válidas: {validos}")
+    print(f"Lecturas descartadas: {descartados}")
+    print(f"Valor máximo: {v_max:.2f}")
+    print(f"Valor mínimo: {v_min:.2f}")
+    print(f"Promedio: {v_prom:.2f}")
+    print("*" * 30)
 # --- LÓGICA PRINCIPAL (NO MODIFICAR ESTA PARTE) ---
+import os
 def ejecutar_pipeline():
     datos_finales = []
     cuenta_total = 0
+    #Obtener la ruta absoluta del archivo en la misma carpeta que el script
+    ruta_scrip = os.path.dirname(os.path.abspath(__file__))
+    ruta_archivo = os.path.join(ruta_scrip, "lecturas_sensores.txt")
 
-    with open("lecturas_sensores.txt", "r") as f:
+    with open(ruta_archivo, "r") as f:
         for linea in f:
             cuenta_total += 1
             valor = limpiar_dato(linea.strip())
             if valor is not None:
- # Normalizar para la IA (0-1)
+            # Normalizar para la IA (0-1)
                 datos_finales.append(valor / 100)
 
     if datos_finales:
