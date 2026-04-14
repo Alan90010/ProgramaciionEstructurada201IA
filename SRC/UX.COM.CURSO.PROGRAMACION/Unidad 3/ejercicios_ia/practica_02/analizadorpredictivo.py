@@ -37,7 +37,16 @@ def obtener_estadisticas(lista_datos):
     FUNCIÓN 3: Recibe la lista de datos válidos.
     Devuelve una TUPLA con: (Valor máximo, Valor mínimo, Promedio).
     """
- # IMPLEMENTAR AQUÍ
+ # IMPLEMENTAR AQUÍ:
+
+    if not lista_datos:
+        return(0,0,0)
+
+    maximo = max(lista_datos)
+    minimo = min(lista_datos)
+    promedio = sum(lista_datos) / len(lista_datos)
+
+    return(maximo, minimo, promedio)
 def generar_reporte(total_datos, validos, estadisticas):
     """
     FUNCIÓN 4: Imprime un resumen formateado de los resultados.
@@ -60,8 +69,6 @@ def ejecutar_pipeline():
     if datos_finales:
         stats = obtener_estadisticas(datos_finales)
         generar_reporte(cuenta_total, len(datos_finales), stats)
-
-
 
 if __name__ == "__main__":
     ejecutar_pipeline()
