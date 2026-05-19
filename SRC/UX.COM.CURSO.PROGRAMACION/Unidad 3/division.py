@@ -2,6 +2,7 @@ def division_entera(dividendo, divisor):
     if divisor == 0:
         return "ERROR, Esta division no es posible"
     
+    
     cociente = 0
     resto = dividendo
 
