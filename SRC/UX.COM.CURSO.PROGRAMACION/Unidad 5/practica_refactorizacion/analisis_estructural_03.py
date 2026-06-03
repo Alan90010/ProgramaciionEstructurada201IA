@@ -13,18 +13,16 @@ import math  # El novato solo importó math esta vez
 #           o bucles anidados manuales sumamente redundantes.
 # =====================================================================
 def inicializar_tablero_vacio():
-    # El novato descubrió que puede "multiplicar" listas, pero no sabe
-    # el peligro de que todas las filas apunten a la misma dirección de memoria.
-    fila_base = [0, 0, 0, 0]
-    tablero = [fila_base, fila_base, fila_base, fila_base]
-    
-    # El novato intenta asegurarse de que funcione usando un ciclo manual 
-    # para "limpiar" cada celda por si acaso, lo cual es redundante
+    tablero = []
+
+ # Hice el cambio para que no se reutilizara "fila_base" para todas las filas y mejor cree "fila_nueva" para que cada fila sea independiente
+
     for i in range(4):
-        for j in range(4):
-            tablero[i][j] = 0
-            
+        fila_nueva = [0, 0, 0, 0]
+        tablero.append(fila_nueva)
+ 
     return tablero
+    
 
 # =====================================================================
 # RETO 2: Recortador de Valores Atípicos (Clamping de Datos)
@@ -36,11 +34,13 @@ def limitar_senal_sensor(valor_lectura, minimo, maximo):
     # Árbol de decisiones manual y enredado para simular un tope
     if valor_lectura < minimo:
         resultado = minimo
-    else:
-        if valor_lectura > maximo:
+
+# Solo sustitui para que sea "elif"
+
+    elif valor_lectura > maximo:
             resultado = maximo
-        else:
-            resultado = valor_lectura
+    else:
+        resultado = valor_lectura
             
     return resultado
 
@@ -68,6 +68,21 @@ def buscar_error_minimo(lista_errores):
             
     return menor_error
 
+
+def buscar_error_minimo(lista_errores):
+# Cambie el valor predeterminado a "math.inf" es un valor infinito de math 
+    menor_error = math.inf
+ 
+    for i in range(len(lista_errores)):
+        valor_actual = lista_errores[i]
+ 
+        # Cambie la multiplicacion manual y agregue "math.fabs" que hace lo mismo y es mas visible 
+        absoluto = math.fabs(valor_actual)
+ 
+        if absoluto < menor_error:
+            menor_error = absoluto
+ 
+    return menor_error
 # =====================================================================
 # RETO 4: Filtro de Valores Únicos (Eliminador de Duplicados)
 # Sentido: Limpiar las IDs de los usuarios del servidor de Discord para
@@ -90,6 +105,19 @@ def depurar_usuarios_repetidos(lista_ids):
         if not ya_existe:
             lista_limpia.append(id_actual)
             
+    return lista_limpia
+
+def depurar_usuarios_repetidos(lista_ids):
+    lista_limpia = []
+ 
+    for i in range(len(lista_ids)):
+        id_actual = lista_ids[i]
+        
+        # Quite el bucle que recorria la lista dato por dato, por que "in" hace lo mismo y mas simplificado
+
+        if id_actual not in lista_limpia:
+            lista_limpia.append(id_actual)
+ 
     return lista_limpia
 
 
